@@ -1,6 +1,11 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getSnippetById, deleteSnippet } from "@/actions/db-prisma-actions";
+import {
+  getSnippetById,
+  deleteSnippet,
+  getAllSnippets,
+} from "@/actions/db-prisma-actions";
+import { Snippet } from "@prisma/client";
 
 interface SnippetShowPageProps {
   params: {
@@ -40,4 +45,14 @@ export default async function SnippetShowPage(
       </pre>
     </div>
   );
+}
+
+export async function generateStaticParams() {
+  const snippets: Snippet[] = await getAllSnippets();
+
+  return snippets.map((snippet) => {
+    return {
+      id: snippet.id.toString(),
+    };
+  });
 }
