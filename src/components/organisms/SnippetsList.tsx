@@ -1,6 +1,6 @@
 import { Snippet } from "@prisma/client";
 import Link from "next/link";
-import { ListItem } from "../molecules/ListItem";
+import ListItem from "../molecules/ListItem";
 
 interface SnippetsListProps {
   snippets: Snippet[];

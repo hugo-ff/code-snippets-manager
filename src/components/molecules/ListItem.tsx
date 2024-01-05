@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { memo } from "react";
 
 interface ListItemProps {
   href: string;
@@ -6,11 +7,7 @@ interface ListItemProps {
   leftText: string;
 }
 
-export function ListItem({
-  href,
-  rightText,
-  leftText,
-}: Readonly<ListItemProps>) {
+function ListItem({ href, rightText, leftText }: Readonly<ListItemProps>) {
   return (
     <Link
       href={href}
@@ -21,3 +18,5 @@ export function ListItem({
     </Link>
   );
 }
+
+export default memo(ListItem);

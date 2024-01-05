@@ -3,10 +3,18 @@
 import { useFormState } from "react-dom";
 import { FormInput } from "@/components/molecules/FormInput";
 import { Button } from "../atoms/Button";
-import { createSnippet } from "@/actions/db-prisma-actions";
 
-export function CreateSnippetForm(): JSX.Element {
-  const [formState, action] = useFormState(createSnippet, { message: "" });
+interface CreateSnippetFormProps {
+  onSubmit: (
+    formState: { message: string },
+    formData: FormData
+  ) => Promise<{ message: string }>;
+}
+
+export function CreateSnippetForm({
+  onSubmit,
+}: Readonly<CreateSnippetFormProps>): JSX.Element {
+  const [formState, action] = useFormState(onSubmit, { message: "" });
 
   return (
     <form action={action}>
